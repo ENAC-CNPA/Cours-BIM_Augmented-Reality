@@ -1,0 +1,30 @@
+{
+  "type": "module",
+  "name": "cours-bim_augmented-reality",
+  "version": "1.0.0",
+  "description": "[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](https://ar.bimaps.io)",
+  "main": "ar-button.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ENAC-CNPA/Cours-BIM_Augmented-Reality.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ENAC-CNPA/Cours-BIM_Augmented-Reality/issues"
+  },
+  "homepage": "https://github.com/ENAC-CNPA/Cours-BIM_Augmented-Reality#readme",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "rollup": "^3.4.0"
+  },
+  "dependencies": {
+    "three": "^0.135.0",
+    "web-ifc-three": "^0.0.121",
+    "web-ifc-viewer": "^1.0.213"
+  }
+}
