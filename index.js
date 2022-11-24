@@ -1,5 +1,6 @@
 // Load the 3D model in 3D web viewer --------------------------------
 
+import { HemisphereLight } from "three";
 import {
   Color,
   MultiplyBlending,
@@ -12,12 +13,14 @@ import {
   MeshBasicMaterial,
   PlaneGeometry,
   Scene,
-  PerspectiveCamera
+  PerspectiveCamera,
 } from "three";
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { IFCLoader } from "web-ifc-three/IFCLoader";
+import { IfcViewerAPI } from 'web-ifc-viewer';
 
 let camera, scene, renderer;
 
@@ -49,6 +52,7 @@ function init() {
     0.04
   ).texture;
 
+  /*
   const loader = new GLTFLoader().setPath("models/");
   loader.load("demo-ar.glb", async function (gltf) {
     scene.add(gltf.scene);
@@ -60,6 +64,36 @@ function init() {
     scene.add(shadowMesh);
     render();
   });
+  */
+
+//WIT
+const light = new HemisphereLight( 0xffffbb, 0x080820, 1 );
+scene.add( light );
+
+  const ifcLoader = new IFCLoader().setPath("models/");
+  ifcLoader.load("RVT21 Villa Le Sextant.ifc", async function (ifc) {
+    scene.add(ifc);
+  });
+
+
+//WIV
+/*
+const container = document.getElementById('viewer-container');
+const viewer = new IfcViewerAPI({ container, backgroundColor: new Color(0xffffff) });
+
+async function loadIfc(url) {
+  // Load the model
+  const model = await viewer.IFC.loadIfcUrl(url);
+
+  // Add dropped shadow and post-processing efect
+  await viewer.shadowDropper.renderShadow(model.modelID);
+  viewer.context.renderer.postProduction.active = true;
+}
+
+loadIfc('./models/RVT21 Villa Le Sextant.ifc');
+*/
+
+
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.addEventListener("change", render); // use if there is no animation loop
